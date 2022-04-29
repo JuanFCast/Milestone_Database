@@ -13,7 +13,7 @@
       <Pane prefHeight="457.0" prefWidth="653.0">
          <children>
             <ImageView fitHeight="455.0" fitWidth="307.0" layoutX="395.0" opacity="0.56" pickOnBounds="true" />
-            <TextField layoutX="436.0" layoutY="216.0" prefHeight="52.0" prefWidth="155.0" />
+            <TextField fx:id="bloquesito" layoutX="447.0" layoutY="216.0" prefHeight="52.0" prefWidth="155.0" />
             <Button layoutX="436.0" layoutY="277.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="221.0" text="GENERATE DATABASE">
                <font>
                   <Font size="15.0" />
@@ -22,12 +22,12 @@
             <TextField alignment="CENTER" layoutX="591.0" layoutY="216.0" prefHeight="52.0" prefWidth="59.0" text="DATA" />
             <ImageView fitHeight="455.0" fitWidth="395.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../media/circuit.jpg" />
+                  <Image url="@../../../Computación%20y%20estructuras%20discretas%201-%203C/CYED1/TareasIntegradoras/T2/Milestone_Database/media/circuit.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="91.0" fitWidth="200.0" layoutX="447.0" layoutY="86.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../media/logo.png" />
+                  <Image url="@../../../Computación%20y%20estructuras%20discretas%201-%203C/CYED1/TareasIntegradoras/T2/Milestone_Database/media/logo.png" />
                </image>
             </ImageView>
          </children>
