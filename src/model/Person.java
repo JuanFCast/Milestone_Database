@@ -1,77 +1,62 @@
 package model;
 
-public class Person{
 
-	private String name;
-	private String lastName;
-	private String birhday;			//mm-dd-yy
-	private String gender;
-	private double height;
-	private String code;
-	private String nationality;
-	
-	public Person(String name, String lastName, String birhday, String gender, double height, String nationality) {
-		this.name = name;
-		this.lastName = lastName;
-		this.birhday = birhday;
-		this.gender = gender;
-		this.height = height;
-		code = "";
-		this.nationality = nationality;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	public void setName(String name) {
-		this.name = name;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
-	}
-	public String getBirhday() {
-		return birhday;
-	}
-	public void setBirhday(String birhday) {
-		this.birhday = birhday;
-	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
-	public double getHeight() {
-		return height;
-	}
-	public void setHeight(double height) {
-		this.height = height;
-	}
-	public String getNationality() {
-		return nationality;
-	}
-	public void setNationality(String nationality) {
-		this.nationality = nationality;
-	}
-	
-	public int comparebyname(String aname) {
-		return name.compareTo(aname);
-	}
-	
-	public int comparebylastname(String alastname) {
-		return lastName.compareTo(alastname);
-	}
-	
-	public int comparebyfullname(String afullname) {
-		String fullname = (name+" "+lastName);
-		return fullname.compareTo(afullname);
-	}
-	
-	public int comparebycode(String acode) {
-		return code.compareTo(acode);
-	}
-		
+public class Person {
+    
+    private String id, name, surname, birth, height, nacionality;
+    private Gender gender;
+    //private Image photo;
+
+    //Constructors
+    public Person(){
+
+    }
+
+    public Person(String n, String s, Gender g, String b, String h, String na){
+        RandomGenerator r = new RandomGenerator(1, 9);
+        RandomGenerator d = new RandomGenerator(1, 3);
+
+        id = "" + r.generateChar();
+        for(int i = 1; i < 10; i++){
+            int l = d.generateInt();
+            if(l == 2){
+                id += r.generateInt();
+            } else{
+                id += r.generateChar();
+            }
+        }
+        name = n;
+        surname = s;
+        gender = g;
+        birth = b;
+        height = h;
+        nacionality = na;
+    }
+
+    //Methods
+    public String id(){
+        return id;
+    }
+    public String name(){
+        return name;
+    }
+    public String surname(){
+        return surname;
+    }
+    public String fullName(){
+        return name + " " + surname;
+    }
+    public String birth(){
+        return birth;
+    }
+    public String gender(){
+        return "" + gender;
+    }
+    public String height(){
+        return height;
+    }
+    public String nacionality(){
+        return nacionality;
+    }
+
 }
