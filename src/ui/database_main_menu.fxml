@@ -22,12 +22,12 @@
             <TextField alignment="CENTER" layoutX="591.0" layoutY="216.0" prefHeight="52.0" prefWidth="59.0" text="DATA" />
             <ImageView fitHeight="455.0" fitWidth="395.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../Computación%20y%20estructuras%20discretas%201-%203C/CYED1/TareasIntegradoras/T2/Milestone_Database/media/circuit.jpg" />
+                  <Image url="@../../media/circuit.jpg" />
                </image>
             </ImageView>
             <ImageView fitHeight="91.0" fitWidth="200.0" layoutX="447.0" layoutY="86.0" pickOnBounds="true">
                <image>
-                  <Image url="@../../../Computación%20y%20estructuras%20discretas%201-%203C/CYED1/TareasIntegradoras/T2/Milestone_Database/media/logo.png" />
+                  <Image url="@../../media/logo.png" />
                </image>
             </ImageView>
          </children>
