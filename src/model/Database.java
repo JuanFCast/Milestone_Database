@@ -1,10 +1,18 @@
 package model;
 
+<<<<<<< HEAD
+=======
+import util.AVL;
+=======
+import java.io.BufferedReader;
+import java.io.FileReader;
+>>>>>>> 8a95ec6707bb9b8f8f0f01714eb234491c5bc3fe
 import java.io.IOException;
 import java.util.Comparator;
 
 import util.AVL;
 import util.RBT;
+
 
 public class Database {
 	

@@ -31,7 +31,7 @@ public class AVL<E> implements ABB<E>{
 			}
 		}else {
 			if(r.getLeft()==null) {
-				r.setRight(n);
+				r.setLeft(n);
 				n.setUp(r);
 			}else {
 				add(n,r.getLeft());
@@ -52,9 +52,9 @@ public class AVL<E> implements ABB<E>{
 	public Node<E> search(Node<E> r, E s) {
 		if(r.getElement()==null) {
 			return r;
-		}else if(comparator.compare(r.getElement(), s)==0) {
+		}else if(comparator.compare(s, r.getElement())==0) {
 			return r;
-		}else if(comparator.compare(r.getElement(), s)>0) {
+		}else if(comparator.compare(s, r.getElement())>0) {
 			return search(r.getRight(), s);
 		}else {
 			return search(r.getLeft(), s);
@@ -106,17 +106,17 @@ public class AVL<E> implements ABB<E>{
 	private void balance(Node<E> n) {
 		do {
 			if(n.getUp()!=null) {
-				if(n.getUp().fb()==2) {
-					if(n.fb()==1 || n.fb()==0) {
+				if(fb(n.getUp())==2) {
+					if(fb(n)==1 || fb(n)==0) {
 						rotateLeft(n.getUp());
-					}else if(n.fb()==-1){
+					}else if(fb(n)==-1){
 						rotateRight(n);
 						rotateLeft(n.getUp());
 					}
-				}else if(n.getUp().fb()==-2) {
-					if(n.fb()==-1 || n.fb()==0) {
+				}else if(fb(n.getUp())==-2) {
+					if(fb(n)==-1 || fb(n)==0) {
 						rotateRight(n.getUp());
-					}else if(n.fb()==1) {
+					}else if(fb(n)==1) {
 						rotateLeft(n);
 						rotateRight(n.getUp());
 					}
@@ -126,15 +126,42 @@ public class AVL<E> implements ABB<E>{
 		}while(n!=null);
 	}
 	
+	public int getheight(Node<E> n){
+    	if(n==null) {
+    		return 0;
+    	}else {
+    		return 1+max(getheight(n.getRight()), getheight(n.getLeft()));
+    	}
+    }
+
+    private int max(int l, int r) {
+		if(l>=r) {
+			return l;
+		}else {
+			return r;
+		}
+		
+	}
+
+    public int fb(Node<E> n){
+    	return getheight(n.getRight())-getheight(n.getLeft());
+    }
+	
 	private void rotateLeft(Node<E> n) {
 		Node<E> aux = n.getRight();
-		n.setRight(aux.getLeft());
-		n.getRight().setUp(n);
+		if(aux.getLeft()!=null) {
+			n.setRight(aux.getLeft());
+			n.getRight().setUp(n);
+		}
 		aux.setLeft(n);
-		if(n==n.getUp().getRight()) {
-			n.getUp().setRight(aux);
+		if(n.getUp()!=null) {
+			if(n==n.getUp().getRight()) {
+				n.getUp().setRight(aux);
+			}else {
+				n.getUp().setLeft(aux);
+			}
 		}else {
-			n.getUp().setLeft(aux);
+			root=aux;
 		}
 		aux.setUp(n.getUp());
 		n.setUp(aux);
@@ -142,13 +169,19 @@ public class AVL<E> implements ABB<E>{
 	
 	private void rotateRight(Node<E> n) {
 		Node<E> aux = n.getLeft();
-		n.setLeft(aux.getRight());
-		n.getLeft().setUp(n);
+		if(aux.getRight()!=null) {
+			n.setLeft(aux.getRight());
+			n.getLeft().setUp(n);
+		}
 		aux.setRight(n);
-		if(n==n.getUp().getRight()) {
-			n.getUp().setRight(aux);
+		if(n.getUp()!=null) {
+			if(n==n.getUp().getRight()) {
+				n.getUp().setRight(aux);
+			}else {
+				n.getUp().setLeft(aux);
+			}
 		}else {
-			n.getUp().setLeft(aux);
+			root=aux;
 		}
 		aux.setUp(n.getUp());
 		n.setUp(aux);

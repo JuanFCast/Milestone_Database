@@ -7,39 +7,9 @@ public class Node<E>{
     Node<E> left;
     Node<E> right;
 
-    public Node(E e, Node<E> n){
+    public Node(E e){
         element = e;
-        up = n;
     }
-
-    public int gethigh(){
-		if(left==null && right==null) {
-			return 1;
-		}else {
-			return max(left.gethigh(), right.gethigh());
-		}
-    }
-
-    private int max(int l, int r) {
-		if(l>=r) {
-			return l;
-		}else {
-			return r;
-		}
-		
-	}
-
-	public int fb(){
-        return right.gethigh()-left.gethigh();
-    }
-	
-	public boolean isbalance() {
-		if(fb()==1 || fb()==0 || fb()==-1) {
-			return true;
-		}else {
-			return false;
-		}
-	}
 
     public E getElement(){
         return element;
