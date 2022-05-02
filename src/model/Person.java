@@ -1,5 +1,6 @@
 package model;
 
+
 public class Person {
     
     private String id, name, surname, birth, height, nacionality;
@@ -56,6 +57,10 @@ public class Person {
     }
     public String nacionality(){
         return nacionality;
+    }
+    
+    public String toString() {
+    	return name + surname;
     }
 
 }
