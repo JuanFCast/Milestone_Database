@@ -1,7 +1,5 @@
 package model;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.Comparator;
 
@@ -16,7 +14,7 @@ public class Database {
 	private AVL<Person> perSurName;
 	private AVL<Person> perFullName;
 
-	private final double MAXPOPULATION = 1000000000; 
+	private final double MAXPOPULATION = 1100413410; 
 	private final String NAME_PATH = "data/names.csv";
 	private final String SURNAME_PATH = "data/Names_2010Census.csv";
 	
