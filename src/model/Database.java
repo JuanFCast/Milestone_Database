@@ -1,5 +1,7 @@
 package model;
 
+import util.AVL;
+
 public class Database {
 	
 	private AVL<Person> perID;
