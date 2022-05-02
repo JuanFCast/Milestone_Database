@@ -8,18 +8,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="457.0" prefWidth="653.0">
          <children>
             <ImageView fitHeight="455.0" fitWidth="307.0" layoutX="395.0" opacity="0.56" pickOnBounds="true" />
-            <TextField fx:id="bloquesito" layoutX="447.0" layoutY="216.0" prefHeight="52.0" prefWidth="155.0" />
-            <Button layoutX="436.0" layoutY="277.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="221.0" text="GENERATE DATABASE">
+            <TextField fx:id="data_txtField" layoutX="447.0" layoutY="217.0" prefHeight="51.0" prefWidth="154.0">
                <font>
-                  <Font size="15.0" />
+                  <Font size="24.0" />
+               </font></TextField>
+            <Button fx:id="generate_bttn" layoutX="447.0" layoutY="268.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="207.0" text="GENERATE DATABASE">
+               <font>
+                  <Font name="System Bold" size="15.0" />
                </font>
             </Button>
-            <TextField alignment="CENTER" layoutX="591.0" layoutY="216.0" prefHeight="52.0" prefWidth="59.0" text="DATA" />
+            <TextField alignment="CENTER" editable="false" layoutX="602.0" layoutY="216.0" prefHeight="52.0" prefWidth="51.0" text="DATA" />
             <ImageView fitHeight="455.0" fitWidth="395.0" pickOnBounds="true">
                <image>
                   <Image url="@../../media/circuit.jpg" />

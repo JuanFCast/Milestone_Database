@@ -11,14 +11,14 @@ public class DatabaseGUI {
 	private Database database;
 	
 	
-	public DatabaseGUI() {
-		
+	public DatabaseGUI() throws IOException {
+		database = new Database();
 	}
 	
 	//Menu's database
 	public void mainMenu() throws IOException {
 		MainMenuGUI m =  new MainMenuGUI(mainStage);
-		m.start();
+		m.start(database.getMAXPOPULATION());
 	}
 	
 	

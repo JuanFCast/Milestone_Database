@@ -1,11 +1,12 @@
 package model;
 
+import javafx.scene.image.Image;
 
 public class Person {
     
     private String id, name, surname, birth, height, nacionality;
     private Gender gender;
-    //private Image photo;
+    private Image photo;
 
     //Constructors
     public Person(){
