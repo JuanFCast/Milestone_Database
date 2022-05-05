@@ -21,8 +21,6 @@ public class Database {
 	private final double MAXPOPULATION = 1100413410; 
 	private final String NAME_PATH = "data/names.csv";
 	private final String SURNAME_PATH = "data/Names_2010Census.csv";
-	
-	private String age;
 
 	public Database() throws IOException{
 		perID = new RBT<>(new Comparator<Person>() {
@@ -31,13 +29,38 @@ public class Database {
 				return p1.id().compareTo(p2.id());
 			}
 		});
+		perName = new AVL<>(new Comparator<Person>() {
+			@Override
+			public int compare(Person p1, Person p2) {
+				return p1.name().compareTo(p2.name());
+			}
+		});
+		perSurName = new AVL<>(new Comparator<Person>() {
+			@Override
+			public int compare(Person p1, Person p2) {
+				return p1.surname().compareTo(p2.surname());
+			}
+		});
+		perFullName = new AVL<>(new Comparator<Person>() {
+			@Override
+			public int compare(Person p1, Person p2) {
+				return p1.fullName().compareTo(p2.fullName());
+			}
+		});
+	}
+	
+	public void generateDATA(double n) {
+		
+	}
+	
+	private Person generatePerson() {
+		
+		return null;
 	}
 
-	public void generateHeight(){
+	public String generateHeight(){
 		RandomGenerator e = new RandomGenerator(100, 200);
-		String height = "";
-		height = (e.generateInt() + " cm");
-		System.out.println(height = (e.generateInt() + " cm"));
+		return (e.generateInt() + " cm");
 	}
 
 	public void generateAge(){
@@ -48,16 +71,10 @@ public class Database {
 		RandomGenerator e = new RandomGenerator(64, 100);
 		
 		age = (a.generateInt() + " años");
-		
 	}
-
-    public void generate(){
-    	
-    }
     
     public double getMAXPOPULATION() {
     	return MAXPOPULATION;
     }
-
 }
 
