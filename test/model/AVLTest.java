@@ -32,7 +32,7 @@ class AVLTest {
 		
 		avl.add(c);
 		System.out.println(avl.getRoot().getElement().name());
-		System.out.println("altura : "+avl.getheight(avl.getRoot())+" fb: "+avl.fb(avl.getRoot()));
+		System.out.println("altura : "+avl.getRoot().he)+" fb: "+avl.fb(avl.getRoot()));
 		avl.add(b);
 		System.out.println(avl.getRoot().getLeft().getElement().name());
 		System.out.println("altura : "+avl.getheight(avl.getRoot())+" fb: "+avl.fb(avl.getRoot()));
