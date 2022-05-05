@@ -2,8 +2,6 @@ package util;
 
 import java.util.Comparator;
 
-import util.Interface.IBST;
-
 public class BST <E> implements IBST<E> {
 
     private BTNode<E> root;

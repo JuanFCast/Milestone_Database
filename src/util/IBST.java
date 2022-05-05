@@ -1,4 +1,4 @@
-package util.Interface;
+package util;
 
 public interface IBST <E> {
     public boolean add(E e);
