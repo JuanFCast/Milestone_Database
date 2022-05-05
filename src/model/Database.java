@@ -4,9 +4,11 @@ import util.AVL;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Comparator;
-
-import util.AVL;
+import java.util.HashMap;
+import java.util.Random;
 import util.RBT;
 
 
@@ -21,6 +23,12 @@ public class Database {
 	private final double MAXPOPULATION = 1100413410; 
 	private final String NAME_PATH = "data/names.csv";
 	private final String SURNAME_PATH = "data/Names_2010Census.csv";
+	
+	private HashMap<Integer, String> names;
+	private HashMap<Integer, String> lastNames;
+	private HashMap<Integer, String> genders;
+	
+	
 
 	public Database() throws IOException{
 		perID = new RBT<>(new Comparator<Person>() {
@@ -47,34 +55,93 @@ public class Database {
 				return p1.fullName().compareTo(p2.fullName());
 			}
 		});
+		names = new HashMap<>();
+		lastNames = new HashMap<>();
+		genders = new HashMap<>();
+		
+		configHash();
 	}
 	
-	public void generateDATA(double n) {
-		
-	}
-	
-	private Person generatePerson() {
-		
-		return null;
+	public void generate(double data) throws IOException{
+		for (int i = 0; i<data ;i++) {
+			Person p = generatePerson();
+			perID.add(p);
+			perName.add(p);
+			perSurName.add(p);
+			perFullName.add(p);
+		}
 	}
 
 	public String generateHeight(){
 		RandomGenerator e = new RandomGenerator(100, 200);
 		return (e.generateInt() + " cm");
 	}
-
-	public void generateAge(){
-		RandomGenerator a = new RandomGenerator(0, 14);
-		RandomGenerator b = new RandomGenerator(15, 24);
-		RandomGenerator c = new RandomGenerator(25, 54);
-		RandomGenerator d = new RandomGenerator(55, 64);
-		RandomGenerator e = new RandomGenerator(64, 100);
-		
-		age = (a.generateInt() + " años");
+	
+	public LocalDate generateBirth() { 
+		return LocalDate.now().minus(Period.ofDays((new Random().nextInt(365 * 70)))); 
 	}
-    
-    public double getMAXPOPULATION() {
-    	return MAXPOPULATION;
-    }
+
+	public Person generatePerson() throws IOException{
+		RandomGenerator rn = new RandomGenerator(1, 6782);
+		RandomGenerator rl = new RandomGenerator(2, 162254);
+		int n = rn.generateInt();
+		String name = generateName(n);
+		String lastName = generateLastName(rl.generateInt());
+		Gender gender = generateGender(n);
+		String birth = generateBirth()+"";
+		String height = generateHeight();
+		String nacionality = "Colombia";
+		return new Person(name, lastName, gender, birth, height, nacionality);
+	}
+	
+	public String generateName(int r) throws IOException{
+		return names.get(r);
+	}
+	
+	public String generateLastName(int r) throws IOException{		
+		return lastNames.get(r);
+	}
+	
+	public Gender generateGender(int g) throws IOException{
+		String gender = genders.get(g);
+		
+		if (gender.equals("boy")) {
+			return Gender.male;
+		}else
+			return Gender.female;
+	}
+	
+	
+	public String generateNacionality(){
+		return null;
+	}
+	
+	private void configHash() throws IOException {
+		BufferedReader bn = new BufferedReader(new FileReader(NAME_PATH));
+		BufferedReader bl = new BufferedReader(new FileReader(SURNAME_PATH));
+		
+		for(int i = 1; i <= 6782; i++) {
+			String n = bn.readLine();
+			
+			String p[] = n.split(",");
+			
+			names.put(i, p[0]);
+			genders.put(i, p[1]);
+		}
+		
+		for(int i = 1; i <= 162254; i++) {
+			String n = bl.readLine();
+			String p[] = n.split(",");
+
+			lastNames.put(i, p[0]);
+		}
+		
+		bn.close();
+		bl.close();	
+	}
+
+	public double getMAXPOPULATION() {
+		return MAXPOPULATION;
+	}
 }
 

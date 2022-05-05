@@ -11,6 +11,24 @@ public class Node<E>{
         element = e;
     }
 
+    public int height(){
+    	if(right==null && left==null) {
+    		return 1;
+    	}else {
+    		if(left!=null && right==null) {
+    			return left.height() + 1;
+    		}else if(left==null && right!=null) {
+    			return right.height() + 1;
+    		}else {
+    			return Math.max(left.height(), right.height()) + 1;
+    		}
+    	}
+    }
+    
+    public int fb(){
+    	return right.height()-left.height();
+    }
+    
     public E getElement(){
         return element;
     }

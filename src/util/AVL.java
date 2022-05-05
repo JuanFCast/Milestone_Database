@@ -12,7 +12,8 @@ public class AVL<E> implements ABB<E>{
     }
 
 	@Override
-	public void add(Node<E> n) {
+	public void add(E e) {
+		Node<E> n = new Node<>(e);
 		if(root==null) {
 			root = n;
 		}else {
@@ -103,22 +104,34 @@ public class AVL<E> implements ABB<E>{
 		}
 	}
 	
+	private boolean isleaf(Node<E> d) {
+		if(d.getRight()==null && d.getLeft()==null) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+
 	private void balance(Node<E> n) {
 		do {
-			if(n.getUp()!=null) {
-				if(fb(n.getUp())==2) {
-					if(fb(n)==1 || fb(n)==0) {
-						rotateLeft(n.getUp());
-					}else if(fb(n)==-1){
+
+			if(n.fb()==-2) {
+				if(n.getLeft()!=null) {
+					if(n.getLeft().fb()==-1 || n.getLeft().fb()==0) {
 						rotateRight(n);
-						rotateLeft(n.getUp());
+					}else {
+						rotateLeft(n.getLeft());
+						rotateRight(n);
 					}
-				}else if(fb(n.getUp())==-2) {
-					if(fb(n)==-1 || fb(n)==0) {
-						rotateRight(n.getUp());
-					}else if(fb(n)==1) {
+
+				}
+			}else if(n.fb()==2) {
+				if(n.getRight()!=null) {
+					if(n.getRight().fb()==1 || n.getRight().fb()==0) {
 						rotateLeft(n);
-						rotateRight(n.getUp());
+					}else {
+						rotateRight(n.getRight());
+						rotateLeft(n);
 					}
 				}
 			}
@@ -185,14 +198,6 @@ public class AVL<E> implements ABB<E>{
 		}
 		aux.setUp(n.getUp());
 		n.setUp(aux);
-	}
-	
-	private boolean isleaf(Node<E> l) {
-		if(l.getLeft()==null && l.getRight()==null) {
-			return true;
-		}else {
-			return false;
-		}
 	}
 	
 	@SuppressWarnings("unused") //este metodo no se usa

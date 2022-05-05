@@ -17,7 +17,7 @@ public class DatabaseGUI {
 	
 	//Menu's database
 	public void mainMenu() throws IOException {
-		MainMenuGUI m =  new MainMenuGUI(mainStage);
+		MainMenuGUI m =  new MainMenuGUI(mainStage, database);
 		m.start(database.getMAXPOPULATION());
 	}
 	
@@ -25,5 +25,7 @@ public class DatabaseGUI {
 	public void setMainStage(Stage s) {
 		mainStage = s;
 	}
+	
+	
 
 }
