@@ -3,7 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.function.UnaryOperator;
 
-
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.stage.Stage;
+import model.Database;
 
 public class MainMenuGUI {
 	@FXML
@@ -22,10 +23,13 @@ public class MainMenuGUI {
 
     //Stage
 	private Stage mainStage;
+	
+	private Database data;
 
 	//Constructor
-	public MainMenuGUI(Stage s) throws IOException{
+	public MainMenuGUI(Stage s, Database d) throws IOException{
 		mainStage = s;
+		data = d;
 	}
 
 	//Methods
@@ -53,6 +57,15 @@ public class MainMenuGUI {
 
 		data_txtField.setTextFormatter(new TextFormatter<String>(integerFilter));	 
 	}
+	
+	@FXML
+    public void generateDataBase(ActionEvent event) throws IOException {
+		double d = Double.parseDouble(data_txtField.getText());
+		data.generate(d);
+		System.out.println(data.toString());
+		
+	}
+
 
 
 
