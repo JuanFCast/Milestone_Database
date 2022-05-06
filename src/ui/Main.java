@@ -1,5 +1,7 @@
 package ui;
 
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -12,11 +14,14 @@ public class Main extends Application{
     }
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		appController = new DatabaseGUI();
-		appController.setMainStage(primaryStage);
-		appController.mainMenu();
-		
+	public void start(Stage primaryStage) {
+		try {
+			appController = new DatabaseGUI();
+			appController.setMainStage(primaryStage);
+			appController.mainMenu();;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }

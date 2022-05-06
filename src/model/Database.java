@@ -58,18 +58,15 @@ public class Database {
 		names = new HashMap<>();
 		lastNames = new HashMap<>();
 		genders = new HashMap<>();
-		
 		configHash();
 	}
 	
-	public void generate(double data) throws IOException{
-		for (int i = 0; i<data ;i++) {
-			Person p = generatePerson();
-			perID.add(p);
-			perName.add(p);
-			perSurName.add(p);
-			perFullName.add(p);
-		}
+	public void generate() throws IOException{
+		Person p = generatePerson();
+		perID.add(p);
+//		perName.add(p);
+//		perSurName.add(p);
+//		perFullName.add(p);
 	}
 
 	public String generateHeight(){
@@ -116,7 +113,7 @@ public class Database {
 		return null;
 	}
 	
-	private void configHash() throws IOException {
+	public void configHash() throws IOException {
 		BufferedReader bn = new BufferedReader(new FileReader(NAME_PATH));
 		BufferedReader bl = new BufferedReader(new FileReader(SURNAME_PATH));
 		
