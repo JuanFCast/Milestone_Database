@@ -23,8 +23,18 @@ public class DatabaseGUI {
 	
 	public void generalMenu() throws IOException {
 		GeneralPaneGUI p = new GeneralPaneGUI(mainStage);
-		p.start();
+		p.startMenu();
 	}
+	
+//	public void searchMenu() throws IOException {
+//		SearchMenuGUI sm = new SearchMenuGUI(mainPane);
+//		sm.startMenu();
+//	}
+//	
+//	public void updateRemoveMenu() throws IOException {
+//		UpdateDeleteMenuGUI ud = new UpdateDeleteMenuGUI(mainPane);
+//		ud.startMenu();
+//	}
 	
 	public void setMainStage(Stage s) {
 		mainStage = s;

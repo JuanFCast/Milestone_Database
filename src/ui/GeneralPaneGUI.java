@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 
 public class GeneralPaneGUI {
 	
-	@FXML
 	private Stage mainStage;
 	@FXML
 	private Pane mainPane;
@@ -21,7 +20,7 @@ public class GeneralPaneGUI {
 		mainStage = s;
 	}
 
-	public void start() throws IOException {
+	public void startMenu() throws IOException {
 		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("mainPane.fxml"));
 		fxmlLoader.setController(this);
 		Parent root = fxmlLoader.load();
@@ -39,10 +38,9 @@ public class GeneralPaneGUI {
     }
 
     @FXML
-    private void updateMenu(ActionEvent event) throws IOException {
+    private void updateRemoveMenu(ActionEvent event) throws IOException {
     	UpdateDeleteMenuGUI ud = new UpdateDeleteMenuGUI(mainPane);
 		ud.startMenu();
     }
-	
 	
 }

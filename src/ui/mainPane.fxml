@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="469.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <MenuBar>
         <menus>
           <Menu mnemonicParsing="false" text="OPTIONS">
             <items>
               <MenuItem mnemonicParsing="false" onAction="#searchMenu" text="Search" />
-                  <MenuItem mnemonicParsing="false" text="Update" />
+                  <MenuItem mnemonicParsing="false" onAction="#updateRemoveMenu" text="Update/Renove" />
             </items>
           </Menu>
           <Menu mnemonicParsing="false" text="About">
@@ -25,9 +25,9 @@
           </Menu>
         </menus>
       </MenuBar>
-      <Pane fx:id="mainPane" prefHeight="441.0" prefWidth="700.0">
+      <Pane fx:id="mainPane" prefHeight="455.0" prefWidth="700.0">
          <children>
-            <ImageView fitHeight="430.0" fitWidth="700.0" pickOnBounds="true">
+            <ImageView fitHeight="455.0" fitWidth="700.0" pickOnBounds="true">
                <image>
                   <Image url="@../../media/database1.jpg" />
                </image>

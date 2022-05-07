@@ -2,12 +2,14 @@ package ui;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
 public class UpdateDeleteMenuGUI {
 	
+	@FXML
 	private Pane mainPane;
 
 	public UpdateDeleteMenuGUI(Pane p) {
