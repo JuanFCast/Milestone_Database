@@ -6,15 +6,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.layout.Pane;
 
-public class SearchMenu {
+public class SearchMenuGUI {
 
 	private Pane mainPane;
 	
-	public SearchMenu(Pane p) {
+	public SearchMenuGUI(Pane p) {
 		mainPane = p;
 	}
 	
-	public void start() throws IOException {
+	public void startMenu() throws IOException {
 		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("search_pane.fxml"));
     	fxmlloader.setController(this);
     	Parent log = fxmlloader.load();

@@ -68,17 +68,8 @@ public class Database {
 //		perSurName.add(p);
 //		perFullName.add(p);
 	}
-
-	public String generateHeight(){
-		RandomGenerator e = new RandomGenerator(100, 200);
-		return (e.generateInt() + " cm");
-	}
 	
-	public LocalDate generateBirth() { 
-		return LocalDate.now().minus(Period.ofDays((new Random().nextInt(365 * 70)))); 
-	}
-
-	public Person generatePerson() throws IOException{
+	private Person generatePerson() throws IOException{
 		RandomGenerator rn = new RandomGenerator(1, 6782);
 		RandomGenerator rl = new RandomGenerator(2, 162254);
 		int n = rn.generateInt();
@@ -90,16 +81,25 @@ public class Database {
 		String nacionality = "Colombia";
 		return new Person(name, lastName, gender, birth, height, nacionality);
 	}
+
+	private String generateHeight(){
+		RandomGenerator e = new RandomGenerator(100, 200);
+		return (e.generateInt() + " cm");
+	}
 	
-	public String generateName(int r) throws IOException{
+	private LocalDate generateBirth() { 
+		return LocalDate.now().minus(Period.ofDays((new Random().nextInt(365 * 70)))); 
+	}
+	
+	private String generateName(int r) throws IOException{
 		return names.get(r);
 	}
 	
-	public String generateLastName(int r) throws IOException{		
+	private String generateLastName(int r) throws IOException{		
 		return lastNames.get(r);
 	}
 	
-	public Gender generateGender(int g) throws IOException{
+	private Gender generateGender(int g) throws IOException{
 		String gender = genders.get(g);
 		
 		if (gender.equals("boy")) {
@@ -113,7 +113,7 @@ public class Database {
 		return null;
 	}
 	
-	public void configHash() throws IOException {
+	private void configHash() throws IOException {
 		BufferedReader bn = new BufferedReader(new FileReader(NAME_PATH));
 		BufferedReader bl = new BufferedReader(new FileReader(SURNAME_PATH));
 		

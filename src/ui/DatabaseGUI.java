@@ -2,14 +2,12 @@ package ui;
 
 import java.io.IOException;
 
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import model.Database;
 
 public class DatabaseGUI {
 	
 	private Stage mainStage;
-	private Pane mainPane;
 	private Database database;
 	
 	//Constructor
@@ -24,13 +22,8 @@ public class DatabaseGUI {
 	}
 	
 	public void generalMenu() throws IOException {
-		GeneralPane p = new GeneralPane(mainStage, mainPane);
+		GeneralPaneGUI p = new GeneralPaneGUI(mainStage);
 		p.start();
-	}
-	
-	public void searchMenu() throws IOException {
-		SearchMenu m =  new SearchMenu(mainPane);
-		m.start();
 	}
 	
 	public void setMainStage(Stage s) {

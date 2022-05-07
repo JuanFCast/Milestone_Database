@@ -10,13 +10,14 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class GeneralPane {
+public class GeneralPaneGUI {
 	
-	private Pane mainPane;
+	@FXML
 	private Stage mainStage;
+	@FXML
+	private Pane mainPane;
 	
-	public GeneralPane(Stage s, Pane p) {
-		mainPane = p;
+	public GeneralPaneGUI(Stage s) {
 		mainStage = s;
 	}
 
@@ -33,13 +34,14 @@ public class GeneralPane {
 	
 	@FXML
     private void searchMenu(ActionEvent event) throws IOException {
-		SearchMenu sm = new SearchMenu(mainPane);
-		sm.start();
+		SearchMenuGUI sm = new SearchMenuGUI(mainPane);
+		sm.startMenu();
     }
 
     @FXML
-    private void updateMenu(ActionEvent event) {
-
+    private void updateMenu(ActionEvent event) throws IOException {
+    	UpdateDeleteMenuGUI ud = new UpdateDeleteMenuGUI(mainPane);
+		ud.startMenu();
     }
 	
 	

@@ -3,6 +3,7 @@ package ui;
 import java.io.IOException;
 import java.util.function.UnaryOperator;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -77,8 +78,13 @@ public class MainMenuGUI {
     public void generateDataBase(ActionEvent event) throws IOException, InterruptedException {
 		double d = Double.parseDouble(data_txtField.getText());
 		progressMenu();
-		int indicator = (int) (1/d);
-		
+		progress(d);
+	}
+	
+	
+	private void progress(double d) throws InterruptedException {
+		double indicator = (1/d);
+
 		Thread t = new Thread() {
 			public void run() {
 				for(int i = 0; i < d; i++) {
@@ -87,13 +93,24 @@ public class MainMenuGUI {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					progress_bar.setProgress(indicator);
+					Platform.runLater(new Thread() {
+						public void run() {
+							progress_bar.setProgress(progress_bar.getProgress() + indicator);
+						}
+					});
 				}
+				Platform.runLater(new Thread() {
+					public void run() {
+						try {
+							controller.generalMenu();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				});
 			}
 		};
-		
+
 		t.start();
-		t.join();
-		controller.generalMenu();
 	}
 }
