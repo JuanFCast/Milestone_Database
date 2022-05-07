@@ -14,7 +14,7 @@ public class AVL<E> implements ABB<E>{
 	@Override
 	public void add(E e) {
 		Node<E> n = new Node<>(e);
-		if(root==null) {
+		if(root == null) {
 			root = n;
 		}else {
 			add(n, root);
@@ -23,22 +23,22 @@ public class AVL<E> implements ABB<E>{
 	
 	//mayores e iguales a la derecha*
 	public void add(Node<E> n, Node<E> r) {
-		if(comparator.compare(n.getElement(), r.getElement())>=0) {
-			if(r.getRight()==null) {
+		if(comparator.compare(n.getElement(), r.getElement()) >= 0) {
+			if(r.getRight() == null) {
 				r.setRight(n);
-				n.setUp(r);
+				n.setParent(r);
 			}else {
-				add(n,r.getRight());
+				add(n, r.getRight());
 			}
 		}else {
-			if(r.getLeft()==null) {
+			if(r.getLeft() == null) {
 				r.setLeft(n);
-				n.setUp(r);
+				n.setParent(r);
 			}else {
 				add(n,r.getLeft());
 			}
 		}
-		balance(n.getUp());
+		balance(n);
 	}
 	
 	public Node<E> search(E s) {
@@ -67,7 +67,7 @@ public class AVL<E> implements ABB<E>{
 		Node<E> remove = search(d);
 		removeNode(remove);
 		
-		balance(remove.getUp());
+		balance(remove.getParent());
 		return remove;
 	}
 	
@@ -76,10 +76,10 @@ public class AVL<E> implements ABB<E>{
 			if(isleaf(d)) {
 				if(d==root) {
 					root=null;
-				}else if(d==d.getUp().getLeft()) {
-					d.getUp().setLeft(null);
+				}else if(d==d.getParent().getLeft()) {
+					d.getParent().setLeft(null);
 				}else {
-					d.getUp().setRight(null);
+					d.getParent().setRight(null);
 				}
 			}else if(d.getLeft()==null || d.getRight()==null) {
 				Node<E> aux;
@@ -88,13 +88,13 @@ public class AVL<E> implements ABB<E>{
 				}else {
 					aux=d.getRight();
 				}
-				aux.setUp(d.getUp());
+				aux.setParent(d.getParent());
 				if(d==root) {
 					root=aux;
-				}else if(d==d.getUp().getLeft()) {
-					d.getUp().setLeft(aux);
+				}else if(d==d.getParent().getLeft()) {
+					d.getParent().setLeft(aux);
 				}else {
-					d.getUp().setRight(aux);
+					d.getParent().setRight(aux);
 				}
 			}else {
 				Node<E> succesor = min(d.getRight());
@@ -114,7 +114,6 @@ public class AVL<E> implements ABB<E>{
 
 	private void balance(Node<E> n) {
 		do {
-
 			if(n.fb()==-2) {
 				if(n.getLeft()!=null) {
 					if(n.getLeft().fb()==-1 || n.getLeft().fb()==0) {
@@ -125,18 +124,20 @@ public class AVL<E> implements ABB<E>{
 					}
 
 				}
-			}else if(n.fb()==2) {
-				if(n.getRight()!=null) {
-					if(n.getRight().fb()==1 || n.getRight().fb()==0) {
+			}else if(n.fb() == 2) {
+				if(n.getRight() != null) {
+					if(n.getRight().fb() == 1 || n.getRight().fb() == 0) {
 						rotateLeft(n);
 					}else {
 						rotateRight(n.getRight());
 						rotateLeft(n);
 					}
 				}
+			} else {
+				
 			}
-			n=n.getUp();
-		}while(n!=null);
+			n = n.getParent();
+		}while(n != null);
 	}
 	
 	public int getheight(Node<E> n){
@@ -161,43 +162,69 @@ public class AVL<E> implements ABB<E>{
     }
 	
 	private void rotateLeft(Node<E> n) {
-		Node<E> aux = n.getRight();
-		if(aux.getLeft()!=null) {
-			n.setRight(aux.getLeft());
-			n.getRight().setUp(n);
-		}
-		aux.setLeft(n);
-		if(n.getUp()!=null) {
-			if(n==n.getUp().getRight()) {
-				n.getUp().setRight(aux);
-			}else {
-				n.getUp().setLeft(aux);
+		if(!n.equals(root)) {	
+			Node<E> p = n.getParent();
+
+			n.setParent(n.getRight());
+			n.getRight().setParent(p);
+			n.setRight(n.getRight().getLeft());
+			if(n.getRight() != null) {
+				n.getRight().setParent(n);
 			}
-		}else {
-			root=aux;
+			n.getParent().setParent(p);
+			n.getParent().setLeft(n);
+
+			if(p.getLeft() == n) {
+				p.setLeft(n.getParent());
+			} else {
+				p.setRight(n.getParent());
+			}			
+		} else {
+			Node<E> left = root;
+			Node<E> aux = n.getRight();
+			
+			root.setRight(aux.getLeft());
+			if(aux.getLeft() != null) {
+				aux.getLeft().setParent(root);
+			}
+			root = aux;
+			root.setParent(left.getParent());
+			root.setLeft(left);
+			left.setParent(aux);
 		}
-		aux.setUp(n.getUp());
-		n.setUp(aux);
 	}
 	
 	private void rotateRight(Node<E> n) {
-		Node<E> aux = n.getLeft();
-		if(aux.getRight()!=null) {
-			n.setLeft(aux.getRight());
-			n.getLeft().setUp(n);
-		}
-		aux.setRight(n);
-		if(n.getUp()!=null) {
-			if(n==n.getUp().getRight()) {
-				n.getUp().setRight(aux);
-			}else {
-				n.getUp().setLeft(aux);
+		if(!n.equals(root)) {
+			Node<E> p = n.getParent();
+			
+			n.setParent(n.getLeft());
+			n.getLeft().setParent(p);
+			n.setLeft(n.getLeft().getRight());
+			if(n.getLeft() != null) {
+				n.getLeft().setParent(n);
 			}
-		}else {
-			root=aux;
+			n.getParent().setParent(p);
+			n.getParent().setRight(n);
+			
+			if(p.getLeft() == n) {
+				p.setLeft(n.getParent());
+			} else {
+				p.setRight(n.getParent());
+			}
+		} else {
+			Node<E> right = root;
+			Node<E> aux = n.getLeft();
+			
+			root.setLeft(aux.getRight());
+			if(aux.getRight() != null) {
+				aux.getRight().setParent(root);
+			}
+			root = aux;
+			root.setParent(right.getParent());
+			root.setRight(right);
+			right.setParent(aux);
 		}
-		aux.setUp(n.getUp());
-		n.setUp(aux);
 	}
 	
 	@SuppressWarnings("unused") //este metodo no se usa
@@ -219,6 +246,40 @@ public class AVL<E> implements ABB<E>{
 	
 	public Node<E> getRoot(){
         return root;
+    }
+	
+	public String printWithRelations(){
+        return printWithRelations(root);
+    }
+
+    private String printWithRelations(Node<E> c){
+        String s = "";
+        if(c != null){
+            s += printWithRelations(c.getLeft());
+            if(c.getParent() != null){
+                s += "Parent: " + c.getParent().getElement() + "\n";
+            } else{
+                s += "Parent: null"  + "\n";
+            }
+            
+            s += "Current: " + c.getElement() + "\n";
+            
+            if(c.getLeft() != null){
+                s += "Left: " + c.getLeft().getElement() + "\n";
+            } else{
+                s += "Left: null"  + "\n";
+            }
+            
+            if(c.getRight() != null){
+                s += "Right: " + c.getRight().getElement() + "\n";
+            } else{
+                s += "Right: null"  + "\n";
+            }
+            
+            s += "\n===================================\n";
+            s += printWithRelations(c.getRight());
+        }
+        return s;
     }
 	
 }

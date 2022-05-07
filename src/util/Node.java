@@ -3,7 +3,7 @@ package util;
 public class Node<E>{
 
     E element;
-    Node<E> up;
+    Node<E> parent;
     Node<E> left;
     Node<E> right;
 
@@ -12,7 +12,7 @@ public class Node<E>{
     }
 
     public int height(){
-    	if(right==null && left==null) {
+    	if(isLeaf()) {
     		return 1;
     	}else {
     		if(left!=null && right==null) {
@@ -25,8 +25,20 @@ public class Node<E>{
     	}
     }
     
+    public boolean isLeaf() {
+    	return (left == null && right == null);
+    }
+    
     public int fb(){
-    	return right.height()-left.height();
+    	if(isLeaf() == true) {
+    		return 0;
+    	} else if(left == null) {
+    		return right.height() - 0;
+    	} else if(right == null) {
+    		return 0 - left.height();
+    	} else {
+    		return (right.height() - left.height());
+    	}
     }
     
     public E getElement(){
@@ -37,12 +49,12 @@ public class Node<E>{
         this.element = element;
     }
 
-    public Node<E> getUp(){
-        return up;
+    public Node<E> getParent(){
+        return parent;
     }
 
-    public void setUp(Node<E> up){
-        this.up = up;
+    public void setParent(Node<E> up){
+        this.parent = up;
     }
 
     public Node<E> getLeft(){

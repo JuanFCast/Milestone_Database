@@ -64,9 +64,9 @@ public class Database {
 	public void generate() throws IOException{
 		Person p = generatePerson();
 		perID.add(p);
-//		perName.add(p);
-//		perSurName.add(p);
-//		perFullName.add(p);
+		perName.add(p);
+		perSurName.add(p);
+		perFullName.add(p);
 	}
 	
 	private Person generatePerson() throws IOException{
