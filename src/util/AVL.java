@@ -1,6 +1,7 @@
 package util;
 
 import java.util.Comparator;
+import java.util.List;
 
 public class AVL<E> implements ABB<E>{
 
@@ -41,11 +42,11 @@ public class AVL<E> implements ABB<E>{
 		balance(n);
 	}
 	
-	public Node<E> search(E s) {
+	public E search(E s) {
 		if(root == null) {
 			return null;
 		}else {
-			return search(root, s);
+			return search(root, s).getElement();
 		}
 	}
 
@@ -64,7 +65,7 @@ public class AVL<E> implements ABB<E>{
 
 	@Override
 	public Node<E> delete(E d) {
-		Node<E> remove = search(d);
+		Node<E> remove = search(root, d);
 		removeNode(remove);
 		
 		balance(remove.getParent());

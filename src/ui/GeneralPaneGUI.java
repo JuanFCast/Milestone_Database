@@ -9,15 +9,18 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.Database;
 
 public class GeneralPaneGUI {
 	
 	private Stage mainStage;
 	@FXML
 	private Pane mainPane;
+	private Database database;
 	
-	public GeneralPaneGUI(Stage s) {
+	public GeneralPaneGUI(Stage s, Database d) {
 		mainStage = s;
+		database = d;
 	}
 
 	public void startMenu() throws IOException {
@@ -33,7 +36,7 @@ public class GeneralPaneGUI {
 	
 	@FXML
     private void searchMenu(ActionEvent event) throws IOException {
-		SearchMenuGUI sm = new SearchMenuGUI(mainPane);
+		SearchMenuGUI sm = new SearchMenuGUI(mainPane, database);
 		sm.startMenu();
     }
 
