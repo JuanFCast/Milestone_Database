@@ -21,7 +21,6 @@ public class Database {
 	private AVL<Person> perName;
 	private AVL<Person> perSurName;
 	private AVL<Person> perFullName;
-	private List<Person> lperID;
 	private List<Person> lperName;
 	private List<Person> lperSurName;
 	private List<Person> lperFullName;
@@ -40,11 +39,7 @@ public class Database {
 		perID = new RBT<>(new Comparator<Person>() {
 			@Override
 			public int compare(Person p1, Person p2) {
-				if(p1.id().contains(p2.id())) {
-					return 0;
-				} else {
-					return p1.id().compareTo(p2.id());
-				}
+				return p1.id().compareTo(p2.id());
 			}
 		});
 		perName = new AVL<>(new Comparator<Person>() {
@@ -152,15 +147,23 @@ public class Database {
 		return MAXPOPULATION;
 	}
 
-	public List<Person> getLperID() {
+	public List<Person> getLperID(String s) {
+		List<Person> aux = perID.listInOrder();
+		List<Person> lperID = new ArrayList<>();
+		
+		for (Person person : aux) {
+			if(person.id().contains(s)) {
+				lperID.add(person);
+			}
+		}
 		return lperID;
 	}
 
 	public List<Person> getLperName(String s) {
 		lperName = new ArrayList<>();
-		lperName = perName.searchList(lperName);
+		List<Person> a = perName.searchList(lperName);
 		char[] c = s.toCharArray();
-		for (Person person : lperName) {
+		for (Person person : a) {
 			int aux = 0;
 			int count = 0;
 			for (char d : c) {
@@ -169,8 +172,8 @@ public class Database {
 				}
 				count++;
 			}
-			if(aux!=c.length) {
-				lperName.remove(person);
+			if(aux==c.length) {
+				lperName.add(person);
 			}
 		}
 		return lperName;
@@ -178,19 +181,19 @@ public class Database {
 
 	public List<Person> getLperSurName(String s) {
 		lperSurName = new ArrayList<>();
-		lperSurName = perSurName.searchList(lperName);
+		List<Person> a = perSurName.searchList(lperSurName);
 		char[] c = s.toCharArray();
-		for (Person person : lperSurName) {
+		for (Person person : a) {
 			int aux = 0;
 			int count = 0;
 			for (char d : c) {
-				if(d==person.name().charAt(count)) {
+				if(d==person.surname().charAt(count)) {
 					aux++;
 				}
 				count++;
 			}
-			if(aux!=c.length) {
-				lperSurName.remove(person);
+			if(aux==c.length) {
+				lperSurName.add(person);
 			}
 		}
 		return lperSurName;
@@ -198,19 +201,19 @@ public class Database {
 
 	public List<Person> getLperFullName(String s) {
 		lperFullName = new ArrayList<>();
-		lperFullName = perFullName.searchList(lperName);
+		List<Person> a = perFullName.searchList(lperFullName);
 		char[] c = s.toCharArray();
-		for (Person person : lperFullName) {
+		for (Person person : a) {
 			int aux = 0;
 			int count = 0;
 			for (char d : c) {
-				if(d==person.name().charAt(count)) {
+				if(d==person.fullName().charAt(count)) {
 					aux++;
 				}
 				count++;
 			}
-			if(aux!=c.length) {
-				lperFullName.remove(person);
+			if(aux==c.length) {
+				lperFullName.add(person);
 			}
 		}
 		return lperFullName;
