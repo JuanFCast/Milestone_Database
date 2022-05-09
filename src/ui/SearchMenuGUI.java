@@ -37,13 +37,6 @@ public class SearchMenuGUI {
     	mainPane.getChildren().setAll(log);
     	typeSearch.getItems().addAll(SEARCH_TYPE.ID, SEARCH_TYPE.Name, SEARCH_TYPE.LastName, SEARCH_TYPE.FullName);
 	}
-	
-	private void searching() {
-		boolean sentinel = false;
-		while(sentinel != true) {
-			
-		}
-	}
 		
 	@FXML
 	public void searching(KeyEvent event) {
@@ -63,7 +56,7 @@ public class SearchMenuGUI {
 					
 					break;
 					
-				case Fullname:
+				case FullName:
 					
 					break;
 

@@ -1,6 +1,8 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
 /*
  * @author: Juan Camilo Ramirez Tabares 
@@ -141,6 +143,37 @@ public class RBT<E> extends BST<E>{
             return null;
         }
     }
+    
+    public List<E> listInOrder(){
+    	List<E> l = new ArrayList<>();
+    	
+    	if(root == null) {
+    		return null;
+    	} else {
+    		return listInOrder(root, l);
+    	}
+    }
+    
+    public List<E> listInOrder(RBNode<E> c, List<E> l){
+    	if(c != null && c.getElement() != null) {
+    		List<E> lLeft = listInOrder(c.getLeft(), new ArrayList<>());
+    		if(lLeft != null) {
+    			l.addAll(lLeft);
+    		}
+    		
+    		l.add(c.getElement());
+    		
+    		List<E> lRight = listInOrder(c.getRight(), new ArrayList<>());
+    		if(lRight != null) {
+    			l.addAll(lRight);
+    		}
+    		
+    		return l;
+    	} else {
+    		return null;
+    	}
+    }
+    
     
 //    public List<E> searchByChar(E e){
 //    	if(root != null) {
