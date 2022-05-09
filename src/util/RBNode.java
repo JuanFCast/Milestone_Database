@@ -85,7 +85,6 @@ public class RBNode<E> extends BTNode<E>{
             return null;
         }
     }
-
 	
 	public void setParent(RBNode<E> p) {
 		parent = p;

@@ -26,11 +26,14 @@ public class SearchMenuGUI {
 		fxmlloader.setController(this);
     	Parent log = fxmlloader.load();
     	mainPane.getChildren().setAll(log);
-    	typeSearch.getItems().addAll(SEARCH_TYPE.ID, SEARCH_TYPE.Name, SEARCH_TYPE.LastName, SEARCH_TYPE.Fullname);
+    	typeSearch.getItems().addAll(SEARCH_TYPE.ID, SEARCH_TYPE.Name, SEARCH_TYPE.LastName, SEARCH_TYPE.FullName);
 	}
 	
 	private void searching() {
-		
+		boolean sentinel = false;
+		while(sentinel != true) {
+			
+		}
 	}
 	
 	public class PleaseProvideControllerClassName {

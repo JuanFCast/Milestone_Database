@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import util.RBT;
 
@@ -34,7 +35,11 @@ public class Database {
 		perID = new RBT<>(new Comparator<Person>() {
 			@Override
 			public int compare(Person p1, Person p2) {
-				return p1.id().compareTo(p2.id());
+				if(p1.id().contains(p2.id())) {
+					return 0;
+				} else {
+					return p1.id().compareTo(p2.id());
+				}
 			}
 		});
 		perName = new AVL<>(new Comparator<Person>() {
@@ -55,6 +60,7 @@ public class Database {
 				return p1.fullName().compareTo(p2.fullName());
 			}
 		});
+		
 		names = new HashMap<>();
 		lastNames = new HashMap<>();
 		genders = new HashMap<>();
