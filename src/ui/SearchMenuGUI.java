@@ -6,11 +6,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import model.Database;
+import model.Person;
 import model.SEARCH_TYPE;
 
 public class SearchMenuGUI {
@@ -22,7 +24,9 @@ public class SearchMenuGUI {
 	private ChoiceBox<SEARCH_TYPE> typeSearch;
 	
 	@FXML
-    private TextField searchField;
+    private TextField search;
+	@FXML
+    private ListView<Person> searchList;
 	private Database database;
 	
 	public SearchMenuGUI(Pane p, Database d) throws IOException {
@@ -35,42 +39,35 @@ public class SearchMenuGUI {
 		fxmlloader.setController(this);
     	Parent log = fxmlloader.load();
     	mainPane.getChildren().setAll(log);
-    	typeSearch.getItems().addAll(SEARCH_TYPE.ID, SEARCH_TYPE.Name, SEARCH_TYPE.LastName, SEARCH_TYPE.Fullname);
-	}
-	
-	private void searching() {
-		
+    	typeSearch.getItems().addAll(SEARCH_TYPE.ID, SEARCH_TYPE.Name, SEARCH_TYPE.LastName, SEARCH_TYPE.FullName);
 	}
 		
 	@FXML
-	public void searching(KeyEvent event) {
+	void searching(KeyEvent event) {
+		searchList.getItems().clear();
 		if(event.getCode()==KeyCode.ENTER) {
-			String e = searchField.getText();
+			String e = search.getText();
 			if(!e.equals("")) {
 				switch (typeSearch.getValue()) {
 				case ID:
-					
+					searchList.getItems().addAll(database.getLperID(e));
 					break;
-					
 				case Name:
-					
+					searchList.getItems().addAll(database.getLperName(e));
 					break;
-					
 				case LastName:
-					
+					searchList.getItems().addAll(database.getLperSurName(e));
 					break;
-					
-				case Fullname:
-					
+				case FullName:
+					searchList.getItems().addAll(database.getLperFullName(e));
 					break;
-
 				default:
 					break;
 				}
 			}
 		}
 	}
-	
+
 	public class PleaseProvideControllerClassName {
 
 	}

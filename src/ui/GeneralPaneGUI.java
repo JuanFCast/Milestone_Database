@@ -16,7 +16,7 @@ public class GeneralPaneGUI {
 	private Stage mainStage;
 	@FXML
 	private Pane mainPane;
-	private Database database;
+	public Database database;
 	
 	public GeneralPaneGUI(Stage s, Database d) {
 		mainStage = s;

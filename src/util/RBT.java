@@ -1,8 +1,12 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 
-//Autor: Juan Camilo Ramirez Tabares
+/*
+ * @author: Juan Camilo Ramirez Tabares 
+ * */
 public class RBT<E> extends BST<E>{
 
 	private RBNode<E> root;
@@ -117,7 +121,7 @@ public class RBT<E> extends BST<E>{
     public E search(E e) {
         BTNode<E> n = search(e, root);
 
-        if(search(e, root) != null){
+        if(n != null){
             return n.getElement();
         } else{
             return null;
@@ -139,6 +143,74 @@ public class RBT<E> extends BST<E>{
             return null;
         }
     }
+    
+    public List<E> listInOrder(){
+    	List<E> l = new ArrayList<>();
+    	
+    	if(root == null) {
+    		return null;
+    	} else {
+    		return listInOrder(root, l);
+    	}
+    }
+    
+    public List<E> listInOrder(RBNode<E> c, List<E> l){
+    	if(c != null && c.getElement() != null) {
+    		List<E> lLeft = listInOrder(c.getLeft(), new ArrayList<>());
+    		if(lLeft != null) {
+    			l.addAll(lLeft);
+    		}
+    		
+    		l.add(c.getElement());
+    		
+    		List<E> lRight = listInOrder(c.getRight(), new ArrayList<>());
+    		if(lRight != null) {
+    			l.addAll(lRight);
+    		}
+    		
+    		return l;
+    	} else {
+    		return null;
+    	}
+    }
+    
+    
+//    public List<E> searchByChar(E e){
+//    	if(root != null) {
+//    		List<E> l = new ArrayList<>();
+//    		return searchByChar(e, root, l);
+//    	} else {
+//    		return null;
+//    	}
+//    }
+//    
+//    public List<E> searchByChar(E e, RBNode<E> c, List<E> l){
+//    	System.out.println("root: " + root.getElement());
+//    	if(c != null && c.getElement() != null){
+//            if(comparator.compare(c.getElement(), e) == -2){
+//            	l.add(c.getElement());
+//        
+//                List<E> lLeft = searchByChar(e, c.getLeft(), new ArrayList<>());
+//                if(lLeft != null) {
+//                	l.addAll(lLeft);	
+//                }
+//                List<E> lRight = searchByChar(e, c.getRight(), new ArrayList<>());
+//                if(lRight != null) {
+//                	l.addAll(lRight);	
+//                }
+//            	
+//            	return l;
+//            } else{
+//                if(comparator.compare(c.getElement(), e) > 0){
+//                    return searchByChar(e, c.getLeft(), l);
+//                } else{
+//                    return searchByChar(e, c.getRight(), l);
+//                }
+//            }
+//        } else{
+//            return null;
+//        }	
+//    }
 	
 	private void rotateLeft(RBNode<E> n) {
 		if(!n.equals(root)) {	
@@ -274,6 +346,10 @@ public class RBT<E> extends BST<E>{
 	public boolean isEmpty() {
 		return(root == null);
 	}
+	
+	public RBT<E> reOrder(){
+		return null;
+	} 
     
     public String inOrder(){
         return inOrder(root);

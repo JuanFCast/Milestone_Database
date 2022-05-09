@@ -21,7 +21,6 @@ public class Database {
 	private AVL<Person> perName;
 	private AVL<Person> perSurName;
 	private AVL<Person> perFullName;
-	private List<Person> lperID;
 	private List<Person> lperName;
 	private List<Person> lperSurName;
 	private List<Person> lperFullName;
@@ -61,6 +60,7 @@ public class Database {
 				return p1.fullName().compareTo(p2.fullName());
 			}
 		});
+		
 		names = new HashMap<>();
 		lastNames = new HashMap<>();
 		genders = new HashMap<>();
@@ -147,25 +147,24 @@ public class Database {
 		return MAXPOPULATION;
 	}
 
-	public List<Person> getLperID() {
+	public List<Person> getLperID(String s) {
+		List<Person> aux = perID.listInOrder();
+		List<Person> lperID = new ArrayList<>();
+		
+		for (Person person : aux) {
+			if(person.id().contains(s)) {
+				lperID.add(person);
+			}
+		}
 		return lperID;
 	}
 
 	public List<Person> getLperName(String s) {
 		lperName = new ArrayList<>();
-		lperName = perName.searchList(lperName);
-		char[] c = s.toCharArray();
-		for (Person person : lperName) {
-			int aux = 0;
-			int count = 0;
-			for (char d : c) {
-				if(d==person.name().charAt(count)) {
-					aux++;
-				}
-				count++;
-			}
-			if(aux!=c.length) {
-				lperName.remove(person);
+		List<Person> a = perName.searchList();
+		for (Person person : a) {
+			if(person.name().contains(s)) {
+				lperName.add(person);
 			}
 		}
 		return lperName;
@@ -173,19 +172,10 @@ public class Database {
 
 	public List<Person> getLperSurName(String s) {
 		lperSurName = new ArrayList<>();
-		lperSurName = perSurName.searchList(lperName);
-		char[] c = s.toCharArray();
-		for (Person person : lperSurName) {
-			int aux = 0;
-			int count = 0;
-			for (char d : c) {
-				if(d==person.name().charAt(count)) {
-					aux++;
-				}
-				count++;
-			}
-			if(aux!=c.length) {
-				lperSurName.remove(person);
+		List<Person> a = perSurName.searchList();
+		for (Person person : a) {
+			if(person.surname().contains(s)) {
+				lperSurName.add(person);
 			}
 		}
 		return lperSurName;
@@ -193,19 +183,10 @@ public class Database {
 
 	public List<Person> getLperFullName(String s) {
 		lperFullName = new ArrayList<>();
-		lperFullName = perFullName.searchList(lperName);
-		char[] c = s.toCharArray();
-		for (Person person : lperFullName) {
-			int aux = 0;
-			int count = 0;
-			for (char d : c) {
-				if(d==person.name().charAt(count)) {
-					aux++;
-				}
-				count++;
-			}
-			if(aux!=c.length) {
-				lperFullName.remove(person);
+		List<Person> a = perFullName.searchList();
+		for (Person person : a) {
+			if(person.fullName().contains(s)) {
+				lperFullName.add(person);
 			}
 		}
 		return lperFullName;

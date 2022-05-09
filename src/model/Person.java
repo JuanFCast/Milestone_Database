@@ -1,18 +1,12 @@
 package model;
 
-import javafx.scene.image.Image;
-
 public class Person {
     
     private String id, name, surname, birth, height, nacionality;
     private Gender gender;
-    private Image photo;
+//    private Image photo;
 
-    //Constructors
-    public Person(){
-
-    }
-
+    //Constructor
     public Person(String n, String s, Gender g, String b, String h, String na){
         RandomGenerator r = new RandomGenerator(1, 9);
         RandomGenerator d = new RandomGenerator(1, 3);
@@ -61,7 +55,7 @@ public class Person {
     }
     
     public String toString() {
-    	return name + " " + surname;
+    	return "ID: "+ id + " | Name: " + name + " | LastName: " + surname;
     }
 
 }
