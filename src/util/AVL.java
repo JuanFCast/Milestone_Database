@@ -42,6 +42,19 @@ public class AVL<E> implements ABB<E>{
 		balance(n);
 	}
 	
+	public List<E> searchList(List<E> l){
+		return searchList(l, root);
+	}
+	
+	private List<E> searchList(List<E> l, Node<E> r){
+		if(r!=null) {
+			searchList(l, r.getLeft());
+			l.add(r.getElement());
+			searchList(l, r.getRight());
+		}
+		return l;
+	}
+	
 	public E search(E s) {
 		if(root == null) {
 			return null;

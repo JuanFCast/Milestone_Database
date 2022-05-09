@@ -18,7 +18,7 @@ class AVLTest {
 	@Test
 	void testAdd() {
 		setupScenary1();
-		
+
 		Node<Person> c = new Node<>(new Person("Childe", "", Gender.male, "01/04/2003", "1.64", "Colombiano"));
 		Node<Person> b = new Node<>(new Person("Beidu", "", Gender.female, "01/04/2003", "1.64", "Colombiano"));
 		Node<Person> a = new Node<>(new Person("Ayaka", "", Gender.female, "01/04/2003", "1.64", "Colombiano"));
@@ -29,32 +29,9 @@ class AVLTest {
 				return p1.name().compareTo(p2.name());
 			}
 		});
-		
-		avl.add(c);
-		System.out.println(avl.getRoot().getElement().name());
-		System.out.println("altura : "+avl.getRoot().he)+" fb: "+avl.fb(avl.getRoot()));
-		avl.add(b);
-		System.out.println(avl.getRoot().getLeft().getElement().name());
-		System.out.println("altura : "+avl.getheight(avl.getRoot())+" fb: "+avl.fb(avl.getRoot()));
-		
-		
-		//System.out.println("altura : "+avl.gethigh(avl.getRoot())+" fb: "+avl.fb(avl.getRoot()));
-		avl.add(d);
-		avl.add(a);
-		//avl.add(b1);
-		System.out.println(avl.getRoot().getElement().name());
-		System.out.println(avl.getRoot().getLeft().getElement().name());
-		System.out.println(avl.getRoot().getRight().getElement().name());
-		System.out.println("altura : "+avl.getheight(avl.getRoot())+" fb: "+avl.fb(avl.getRoot()));
-		
-		System.out.println(avl.delete(d.getElement()).getElement().name());;
-		
-		System.out.println(avl.getRoot().getElement().name());
-		System.out.println(avl.getRoot().getLeft().getElement().name());
-		//System.out.println(avl.getRoot().getRight().getElement().name());
-		
+
 		assertTrue(true);
-		
+
 	}
 
 }

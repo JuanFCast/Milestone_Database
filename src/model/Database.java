@@ -6,8 +6,10 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import util.RBT;
 
@@ -19,6 +21,10 @@ public class Database {
 	private AVL<Person> perName;
 	private AVL<Person> perSurName;
 	private AVL<Person> perFullName;
+	private List<Person> lperID;
+	private List<Person> lperName;
+	private List<Person> lperSurName;
+	private List<Person> lperFullName;
 
 	private final double MAXPOPULATION = 1100413410; 
 	private final String NAME_PATH = "data/names.csv";
@@ -140,5 +146,70 @@ public class Database {
 	public double getMAXPOPULATION() {
 		return MAXPOPULATION;
 	}
+
+	public List<Person> getLperID() {
+		return lperID;
+	}
+
+	public List<Person> getLperName(String s) {
+		lperName = new ArrayList<>();
+		lperName = perName.searchList(lperName);
+		char[] c = s.toCharArray();
+		for (Person person : lperName) {
+			int aux = 0;
+			int count = 0;
+			for (char d : c) {
+				if(d==person.name().charAt(count)) {
+					aux++;
+				}
+				count++;
+			}
+			if(aux!=c.length) {
+				lperName.remove(person);
+			}
+		}
+		return lperName;
+	}
+
+	public List<Person> getLperSurName(String s) {
+		lperSurName = new ArrayList<>();
+		lperSurName = perSurName.searchList(lperName);
+		char[] c = s.toCharArray();
+		for (Person person : lperSurName) {
+			int aux = 0;
+			int count = 0;
+			for (char d : c) {
+				if(d==person.name().charAt(count)) {
+					aux++;
+				}
+				count++;
+			}
+			if(aux!=c.length) {
+				lperSurName.remove(person);
+			}
+		}
+		return lperSurName;
+	}
+
+	public List<Person> getLperFullName(String s) {
+		lperFullName = new ArrayList<>();
+		lperFullName = perFullName.searchList(lperName);
+		char[] c = s.toCharArray();
+		for (Person person : lperFullName) {
+			int aux = 0;
+			int count = 0;
+			for (char d : c) {
+				if(d==person.name().charAt(count)) {
+					aux++;
+				}
+				count++;
+			}
+			if(aux!=c.length) {
+				lperFullName.remove(person);
+			}
+		}
+		return lperFullName;
+	}
+	
 }
 
