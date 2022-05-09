@@ -22,7 +22,7 @@ public class DatabaseGUI {
 	}
 	
 	public void generalMenu() throws IOException {
-		GeneralPaneGUI p = new GeneralPaneGUI(mainStage);
+		GeneralPaneGUI p = new GeneralPaneGUI(mainStage, database);
 		p.startMenu();
 	}
 	
@@ -39,4 +39,5 @@ public class DatabaseGUI {
 	public void setMainStage(Stage s) {
 		mainStage = s;
 	}
+
 }

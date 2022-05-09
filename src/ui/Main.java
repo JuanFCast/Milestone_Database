@@ -18,7 +18,7 @@ public class Main extends Application{
 		try {
 			appController = new DatabaseGUI();
 			appController.setMainStage(primaryStage);
-			appController.mainMenu();;
+			appController.mainMenu();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
