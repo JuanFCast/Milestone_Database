@@ -43,7 +43,7 @@ public class SearchMenuGUI {
 	}
 		
 	@FXML
-	void searching(KeyEvent event) {
+	public void searching(KeyEvent event) {
 		if(event.getCode()==KeyCode.ENTER) {
 			String e = searchField.getText();
 			if(!e.equals("")) {
