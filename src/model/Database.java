@@ -82,7 +82,7 @@ public class Database {
 		String name = generateName(n);
 		String lastName = generateLastName(rl.generateInt());
 		Gender gender = generateGender(n);
-		String birth = generateBirth()+"";
+		LocalDate birth = generateBirth();
 		String height = generateHeight();
 		String nacionality = "Colombia";
 		return new Person(name, lastName, gender, birth, height, nacionality);
@@ -190,6 +190,29 @@ public class Database {
 			}
 		}
 		return lperFullName;
+	}
+	
+	public boolean remove(Person p) throws Exception {
+		perID.remove(p);
+		perName.delete(p);
+		perSurName.delete(p);
+		perFullName.delete(p);
+		
+		return true;
+	}
+	
+	public boolean update(Person p, Person aux) throws Exception {
+		perID.remove(p);
+		perName.delete(p);
+		perSurName.delete(p);
+		perFullName.delete(p);
+		
+		perID.add(aux);
+		perName.add(aux);
+		perSurName.add(aux);
+		perFullName.add(aux);
+		
+		return true;
 	}
 	
 }

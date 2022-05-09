@@ -42,7 +42,7 @@ public class GeneralPaneGUI {
 
     @FXML
     private void updateRemoveMenu(ActionEvent event) throws IOException {
-    	UpdateDeleteMenuGUI ud = new UpdateDeleteMenuGUI(mainPane);
+    	UpdateDeleteMenuGUI ud = new UpdateDeleteMenuGUI(mainPane, database);
 		ud.startMenu();
     }
 	

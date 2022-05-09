@@ -10,6 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import model.Database;
 import model.Person;
@@ -66,6 +67,16 @@ public class SearchMenuGUI {
 				}
 			}
 		}
+	}
+	
+	@FXML
+	void readValue(MouseEvent event) throws IOException {
+		if(searchList.getItems().size() <= 10) {
+			Person p = searchList.getSelectionModel().getSelectedItem();
+			UpdateDeleteMenuGUI ud = new UpdateDeleteMenuGUI(mainPane, database);
+			ud.startMenu();
+			ud.constructMenu(p);
+		}	
 	}
 
 	public class PleaseProvideControllerClassName {

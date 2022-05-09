@@ -1,13 +1,16 @@
 package model;
 
+import java.time.LocalDate;
+
 public class Person {
     
-    private String id, name, surname, birth, height, nacionality;
+    private String id, name, surname, height, nacionality;
+    private LocalDate birth;
     private Gender gender;
 //    private Image photo;
 
     //Constructor
-    public Person(String n, String s, Gender g, String b, String h, String na){
+    public Person(String n, String s, Gender g, LocalDate b, String h, String na){
         RandomGenerator r = new RandomGenerator(1, 9);
         RandomGenerator d = new RandomGenerator(1, 3);
 
@@ -41,17 +44,21 @@ public class Person {
     public String fullName(){
         return name + " " + surname;
     }
-    public String birth(){
+    public LocalDate birth(){
         return birth;
     }
-    public String gender(){
-        return "" + gender;
+    public Gender gender(){
+        return gender;
     }
     public String height(){
         return height;
     }
     public String nacionality(){
         return nacionality;
+    }
+    
+    public void setID(String i) {
+    	id = i;
     }
     
     public String toString() {
