@@ -61,7 +61,7 @@ public class SearchMenuGUI {
 					break;
 					
 				case LastName:
-					searchList.getItems().addAll(database.getLperFullName(e));
+					searchList.getItems().addAll(database.getLperSurName(e));
 					break;
 					
 				case Fullname:
