@@ -1,5 +1,6 @@
 package util;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
@@ -42,7 +43,8 @@ public class AVL<E> implements ABB<E>{
 		balance(n);
 	}
 	
-	public List<E> searchList(List<E> l){
+	public List<E> searchList(){
+		List<E> l = new ArrayList<>();
 		return searchList(l, root);
 	}
 	
