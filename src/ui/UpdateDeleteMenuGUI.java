@@ -74,7 +74,9 @@ public class UpdateDeleteMenuGUI {
 	
 	@FXML
     void delete_bttn(ActionEvent event) throws Exception {
-		database.remove(personSelected);
+		if(personSelected != null) {
+			database.remove(personSelected);
+		}
     }
 
     @FXML
